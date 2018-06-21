@@ -1,0 +1,96 @@
+extends layout1
+
+
+  
+block content
+ h1= formstuff
+  div#main 
+  h2#otsikko2 i want to get to know you!
+  p#kappale1 for the <em>perfect user experience</em> the form is prefilled for your convenience.
+  p#kappale2 visitor! please confirm and click submit
+  
+  .main.container
+    .row#tiedot
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 please confirm
+        h2.display-4.m-b-2 if this you, click yes, otherwise refresh
+        // register form
+        form(method='POST' action='/register')
+        div.form-group
+          label(for='name') name:
+        div.form-group
+          input#name.form-control(type='text', value = "")
+        div.form-group
+          label(for='lastname') lastName:
+        div.form-group
+          input#lastname.form-control(type='text', value ="")
+        div.form-group
+          label(for='email') email:
+        div.form-group
+          input#email.form-control(type='text', value ="")  
+        div.form-group
+          label(for='phonenumber') phonenumber:
+        div.form-group
+          input#phonenumber.form-control(type='text', value ="")
+        div.form-group
+          button.btn.btn-primary(type='submit' onclick="tyhdistaKaikki()") this me yes
+        div.form-group
+          button.btn.btn-primary(type='submit' onclick="window.location.reload()") this is not me no
+          
+          
+   
+       
+    
+    script.
+
+          function makeid() {
+            var nimet = ["Kalle", "Jouni", "Mikko", "Panu"]
+            var possible = Math.floor((Math.random() * 3) + 1);
+            var nimi = nimet[possible]
+            console.log(nimi)
+            return nimi;
+            }
+            
+           function makeLastnames() {
+            var sukunimet = ["Pusa", "Virtanen", "Tammer", "Chan"]
+            var possible = Math.floor((Math.random() * 3) + 1);
+            var sukunimi = sukunimet[possible]
+            console.log(nimi)
+            return sukunimi;
+            }
+            
+           function makePhoneNumber() {
+            var number = "string"
+            number = "0" + Math.floor((Math.random()*2) + 4)
+            number +=  Math.floor((Math.random() * 50000000) + 40000000)
+            return number;
+           }
+           
+           function tyhdistaKaikki() {
+                document.getElementById("tiedot").remove();
+                document.getElementById("otsikko2").remove();
+                document.getElementById("kappale1").remove();
+                document.getElementById("kappale2").remove();
+                var text = document.createTextNode("thank you");
+                document.getElementById("main").append(text);
+            }
+            
+            
+        var nimi = makeid();
+        var sukunimi = makeLastnames();
+        var email = makeid();
+        var numero = makePhoneNumber();
+        
+        document.getElementById("name").value = nimi
+        document.getElementById("lastname").value = sukunimi
+        document.getElementById("email").value = nimi + "@" + email + ".fi"
+        document.getElementById("phonenumber").value = numero;
+        
+        document.getElementById("name").readOnly = true; 
+        document.getElementById("lastname").readOnly = true; 
+        document.getElementById("email").readOnly = true; 
+        document.getElementById("phonenumber").readOnly = true; 
+        
+  
+   
+    
